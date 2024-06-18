@@ -16,7 +16,7 @@ class Queue
 {
     use LoggerAwareTrait;
 
-    private const MAX_ITEM_ID = 65000;
+    private const int MAX_ITEM_ID = 99999;
 
     private SplQueue $queue;
     private int $id = 1;
@@ -46,7 +46,7 @@ class Queue
 
     public function execute(Closure $callback): Promise
     {
-        return new Promise(fn ($resolve, $reject) => $this->enqueue($resolve, $reject, $callback));
+        return new Promise(fn ($resolve, $reject) => $this->enqueue(Closure::fromCallable($resolve), Closure::fromCallable($reject), $callback));
     }
 
     private function enqueue(Closure $resolve, Closure $reject, Closure $callback): void
@@ -81,16 +81,12 @@ class Queue
             $promise->then(
                 function ($result) use ($job) {
                     $this->pending--;
-                    $this->logger->debug(sprintf('Resolving job %d. Pending - %d, queued - %d', $job->id, $this->pending, $this->count()));
                     call_user_func($job->resolve, $result);
-                    $this->logger->debug(sprintf('Resolved job %d', $job->id));
                     $this->executeNext();
                 },
                 function ($error) use ($job) {
                     $this->pending--;
-                    $this->logger->debug(sprintf('Rejecting job %d. Pending - %d, queued - %d', $job->id, $this->pending, $this->count()));
                     call_user_func($job->reject, $error);
-                    $this->logger->debug(sprintf('Rejected job %d', $job->id));
                     $this->executeNext();
                 }
             );
@@ -98,7 +94,6 @@ class Queue
             $this->pending--;
             $this->logger->debug(sprintf('Error in job %d - %s', $job->id, $e->getMessage()));
             call_user_func($job->reject, $e);
-            $this->logger->debug(sprintf('Rejected job %d', $job->id));
             $this->executeNext();
         }
     }

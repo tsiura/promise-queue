@@ -114,4 +114,39 @@ class BasicUsageTest extends TestCase
 
         self::assertEquals([10, 20, 30], $test);
     }
+
+    public function testClearQueue()
+    {
+        $test = [];
+
+        $q = new Queue();
+
+        $d1 = new Deferred();
+        $q->execute(function () use ($d1) {
+            return $d1->promise();
+        })->then(function ($value) use (&$test) {
+            $test[] = $value;
+        });
+
+        $d2 = new Deferred();
+        $q->execute(function () use ($d2, $q) {
+            $q->clear();
+            return $d2->promise();
+        })->then(function ($value) use (&$test) {
+            $test[] = $value;
+        });
+
+        $d3 = new Deferred();
+        $q->execute(function () use ($d3) {
+            return $d3->promise();
+        })->then(function ($value) use (&$test) {
+            $test[] = $value;
+        });
+
+        $d1->resolve(10);
+        $d2->resolve(20);
+        $d3->resolve(30);
+
+        self::assertEquals([10, 20], $test);
+    }
 }
