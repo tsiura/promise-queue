@@ -1,7 +1,7 @@
 {
     "name": "tsiura/promise-queue",
     "description": "A PHP library for asynchronous, promise-based queues with execution concurrency limit",
-    "license": "GPLv3",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Yevhenii Tsiura",
