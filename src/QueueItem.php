@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tsiura\PromiseQueue;
+namespace Zeran\PromiseQueue;
 
 use Closure;
 
-readonly class QueueItem
+final readonly class QueueItem
 {
     public function __construct(
         public int $id,

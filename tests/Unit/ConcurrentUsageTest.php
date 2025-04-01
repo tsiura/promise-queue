@@ -5,10 +5,10 @@ namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use React\Promise\Deferred;
 use React\Promise\Promise;
-use Tsiura\PromiseQueue\Queue;
-use Tsiura\PromiseQueue\QueueException;
+use Zeran\PromiseQueue\Queue;
+use Zeran\PromiseQueue\QueueException;
 
-class ConcurrentUsageTest extends TestCase
+final class ConcurrentUsageTest extends TestCase
 {
     public function testSequenceBasic()
     {

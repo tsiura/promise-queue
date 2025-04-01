@@ -1,5 +1,5 @@
 {
-    "name": "tsiura/promise-queue",
+    "name": "zeran/promise-queue",
     "description": "A PHP library for asynchronous, promise-based queues with execution concurrency limit",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -14,14 +14,14 @@
         "psr/log": "^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5",
-        "squizlabs/php_codesniffer": "^3.7",
-        "vimeo/psalm": "^5.24",
-        "phpstan/phpstan": "^1.11"
+        "phpunit/phpunit": "^12.0",
+        "squizlabs/php_codesniffer": "^3.12",
+        "vimeo/psalm": "^6.10",
+        "phpstan/phpstan": "^2.1"
     },
     "autoload": {
         "psr-4": {
-            "Tsiura\\PromiseQueue\\": "src/"
+            "Zeran\\PromiseQueue\\": "src/"
         }
     },
     "autoload-dev": {

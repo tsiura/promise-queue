@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tsiura\PromiseQueue;
+namespace Zeran\PromiseQueue;
 
 use SplQueue;
 use Closure;
@@ -12,7 +12,7 @@ use React\Promise\Promise;
 use React\Promise\PromiseInterface;
 use function React\Promise\resolve;
 
-class Queue
+final class Queue
 {
     use LoggerAwareTrait;
 

@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use React\Promise\Deferred;
-use Tsiura\PromiseQueue\Queue;
+use Zeran\PromiseQueue\Queue;
 
-class BasicUsageTest extends TestCase
+final class BasicUsageTest extends TestCase
 {
     public function testSequenceBasic()
     {

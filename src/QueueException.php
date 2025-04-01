@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tsiura\PromiseQueue;
+namespace Zeran\PromiseQueue;
 
 use Exception;
 
-class QueueException extends Exception
+final class QueueException extends Exception
 {
 
 }
